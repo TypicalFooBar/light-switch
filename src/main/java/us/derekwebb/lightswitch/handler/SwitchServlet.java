@@ -14,11 +14,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 @SuppressWarnings("serial")
-public class IndexServlet extends HttpServlet
+public class SwitchServlet extends HttpServlet
 {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
 	{
-		response.getWriter().println("{\"name\":\"Derek Webb\",\"message\":\"HELLO!\"}");
+		response.getWriter().println("test");
 	}
 }
