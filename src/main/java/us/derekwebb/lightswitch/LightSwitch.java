@@ -6,7 +6,7 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.handler.HandlerList;
 
-import us.derekwebb.lightswitch.handler.SwitchServlet;
+import us.derekwebb.lightswitch.servlet.LightSwitchServlet;
 
 public class LightSwitch
 {
@@ -18,7 +18,7 @@ public class LightSwitch
 		resourceHandler.setResourceBase("./www");
 		
 		ServletHandler servletHandler = new ServletHandler();
-		servletHandler.addServletWithMapping(SwitchServlet.class, "/api/switch");
+		servletHandler.addServletWithMapping(LightSwitchServlet.class, "/api/switch");
 		
 		HandlerList handlers = new HandlerList();
 		handlers.setHandlers(new Handler[] { 
