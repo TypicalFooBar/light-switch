@@ -14,46 +14,32 @@ import org.eclipse.jetty.servlet.ServletHandler;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import us.derekwebb.lightswitch.model.LightSwitch;
+
 @SuppressWarnings("serial")
 public class LightSwitchServlet extends HttpServlet
 {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
 	{
-		LightSwitches lightSwitches = new LightSwitches();
-		lightSwitches.add(new LightSwitch("Switch 1", true));
-		lightSwitches.add(new LightSwitch("Switch 2", false));
-		
 		Gson gson = new Gson();
-		String jsonReturn = gson.toJson(lightSwitches);
+		String jsonReturn = "";
+		
+		if (request.getParameter("action").equals("getLightSwitches"))
+		{
+			ArrayList<LightSwitch> lightSwitches = getLightSwitches();
+			jsonReturn = gson.toJson(lightSwitches);
+		}
 		
 		response.getWriter().println(jsonReturn);
 	}
 	
-	public class LightSwitches
+	private ArrayList<LightSwitch> getLightSwitches()
 	{
-		private ArrayList<LightSwitch> lightSwitches = new ArrayList<LightSwitch>();
+		ArrayList<LightSwitch> lightSwitches = new ArrayList<LightSwitch>();
+		lightSwitches.add(new LightSwitch("Switch 1", true));
+		lightSwitches.add(new LightSwitch("Switch 2", false));
 		
-		public void add(LightSwitch lightSwitch)
-		{
-			this.lightSwitches.add(lightSwitch);
-		}
-		
-		public ArrayList<LightSwitch> getSwitches() { return this.lightSwitches; }
-	}
-	
-	public class LightSwitch
-	{
-		private String name;
-		private boolean on;
-		
-		public LightSwitch(String name, boolean on)
-		{
-			this.name = name;
-			this.on = on;
-		}
-		
-		public String getName() { return this.name; }
-		public boolean isOn() { return this.on; }
+		return lightSwitches;
 	}
 }

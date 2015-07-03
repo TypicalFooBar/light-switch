@@ -4,16 +4,16 @@ $(function() {
 
 function getLightSwitches() {
 	// AJAX call to get the light switches
-	$.get("/api/switch?action=get-light-switches")
+	$.get("/api/switch?action=getLightSwitches")
 		.done(function(data) {
 			// This is the div we'll put the light switch buttons in
 			var buttonsDiv = $('#buttons');
 			
 			// Parse the return json
-			var json = JSON.parse(data);
+			var lightSwitchList = JSON.parse(data);
 			
 			// For each light switch
-			$.each(json.lightSwitches, function(index, value) {
+			$.each(lightSwitchList, function(index, value) {
 				// Start the button html
 				var buttonHtml = '<button class="massive toggle ui button';
 				
