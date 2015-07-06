@@ -14,4 +14,5 @@ dependencies {
 	compile 'com.google.code.gson:gson:2.3.1'
 	compile 'org.eclipse.jetty:jetty-servlet:9.3.0.v20150612'
 	compile 'com.pi4j:pi4j-core:1.0'
+	compile 'org.xerial:sqlite-jdbc:3.8.10.1'
 }
