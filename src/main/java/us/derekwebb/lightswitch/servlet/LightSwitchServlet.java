@@ -25,21 +25,21 @@ public class LightSwitchServlet extends HttpServlet
 		Gson gson = new Gson();
 		String jsonReturn = "";
 		
-		if (request.getParameter("action").equals("getLightSwitches"))
+		if (request.getParameter("action").equals("getLightSwitchList"))
 		{
-			ArrayList<LightSwitch> lightSwitches = getLightSwitches();
-			jsonReturn = gson.toJson(lightSwitches);
+			ArrayList<LightSwitch> lightSwitchList = getLightSwitchList();
+			jsonReturn = gson.toJson(lightSwitchList);
 		}
 		
 		response.getWriter().println(jsonReturn);
 	}
 	
-	private ArrayList<LightSwitch> getLightSwitches()
+	private ArrayList<LightSwitch> getLightSwitchList()
 	{
-		ArrayList<LightSwitch> lightSwitches = new ArrayList<LightSwitch>();
-		lightSwitches.add(new LightSwitch("Switch 1", true));
-		lightSwitches.add(new LightSwitch("Switch 2", false));
+		ArrayList<LightSwitch> lightSwitchList = new ArrayList<LightSwitch>();
+		lightSwitchList.add(new LightSwitch("Switch 1", true));
+		lightSwitchList.add(new LightSwitch("Switch 2", false));
 		
-		return lightSwitches;
+		return lightSwitchList;
 	}
 }

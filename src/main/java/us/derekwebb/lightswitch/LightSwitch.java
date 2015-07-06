@@ -29,6 +29,10 @@ public class LightSwitch
 		server.setHandler(handlers);
 		
 		server.start();
+		
+		// TODO: Used only for testing
+		java.awt.Desktop.getDesktop().browse(new java.net.URI("http://localhost:8080"));
+		
 		server.join();
 	}
 }

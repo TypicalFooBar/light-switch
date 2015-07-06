@@ -1,0 +1,3 @@
+{{#.}}
+	<button class="massive toggle ui button {{#on}}active{{/on}}">{{name}}</button>
+{{/.}}
