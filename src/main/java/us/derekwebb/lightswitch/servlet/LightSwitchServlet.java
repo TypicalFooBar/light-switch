@@ -1,7 +1,12 @@
 package us.derekwebb.lightswitch.servlet;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +20,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import us.derekwebb.lightswitch.model.LightSwitch;
+import us.derekwebb.lightswitch.model.Database;
 
 @SuppressWarnings("serial")
 public class LightSwitchServlet extends HttpServlet
@@ -37,8 +43,38 @@ public class LightSwitchServlet extends HttpServlet
 	private ArrayList<LightSwitch> getLightSwitchList()
 	{
 		ArrayList<LightSwitch> lightSwitchList = new ArrayList<LightSwitch>();
-		lightSwitchList.add(new LightSwitch("Switch 1", true));
-		lightSwitchList.add(new LightSwitch("Switch 2", false));
+		
+		try
+		{
+			// Create the Database object
+			Database db = new Database();
+			
+			// SQL to run
+			String sql = "select name, active from Switch";
+			
+			// Open a connection
+			db.connect();
+			
+			// Run the query
+			ResultSet resultSet = db.executeQuery(sql);
+			
+			// Loop through the ResultSet
+			while (resultSet.next())
+			{
+				// Get the values
+				String name = resultSet.getString("name");
+				boolean on = (resultSet.getInt("active") != 0);
+				
+				// Create a new LightSwitch object and add it to the list
+				lightSwitchList.add(new LightSwitch(name, on));
+			}
+			
+			// Close the database connection
+			db.close();
+		}
+		catch (SQLException e)
+		{
+		}
 		
 		return lightSwitchList;
 	}
