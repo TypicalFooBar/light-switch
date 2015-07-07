@@ -2,7 +2,7 @@ var templates = [];
 
 $(function() {
 	loadTemplates();
-	updateLightSwitchList();
+	getLightSwitchList();
 });
 
 function loadTemplates() {
@@ -11,7 +11,7 @@ function loadTemplates() {
 	});
 }
 
-function updateLightSwitchList() {
+function getLightSwitchList() {
 	// AJAX call to get the light switches
 	$.get("/api/light-switch?action=getLightSwitchList")
 		.done(function(data) {
