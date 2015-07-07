@@ -1,3 +1,3 @@
 {{#.}}
-	<button class="massive toggle ui button {{#on}}active{{/on}}">{{name}}</button>
+	<button data-id="{{id}}" data-name="{{name}}" class="light-switch massive toggle ui button {{#active}}active{{/active}}">{{name}}</button>
 {{/.}}

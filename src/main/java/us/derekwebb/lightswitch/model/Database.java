@@ -82,6 +82,13 @@ public class Database
 	
 	private void insertDummyData() throws SQLException
 	{
+		LightSwitch one = new LightSwitch("Test 1", true);
+		LightSwitch two = new LightSwitch("Test 2", false);
+		
+		one.commit();
+		two.commit();
+		
+		/*
 		// Insert SQL
 		String sql = "insert into LightSwitch (name, active) values (?, ?)";
 		
@@ -100,5 +107,6 @@ public class Database
 		
 		// Close the connection to the database
 		this.close();
+		*/
 	}
 }

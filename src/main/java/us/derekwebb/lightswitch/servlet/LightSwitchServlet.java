@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -13,11 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.jetty.server.Request;
-import org.eclipse.jetty.servlet.ServletHandler;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import us.derekwebb.lightswitch.model.LightSwitch;
 import us.derekwebb.lightswitch.model.Database;
@@ -36,6 +31,11 @@ public class LightSwitchServlet extends HttpServlet
 			ArrayList<LightSwitch> lightSwitchList = getLightSwitchList();
 			jsonReturn = gson.toJson(lightSwitchList);
 		}
+		else if (request.getParameter("action").equals("updateLightSwitch"))
+		{
+			LightSwitch lightSwitch = gson.fromJson(request.getParameter("lightSwitch"), LightSwitch.class);
+			lightSwitch.commit();
+		}
 		
 		response.getWriter().println(jsonReturn);
 	}
@@ -50,7 +50,7 @@ public class LightSwitchServlet extends HttpServlet
 			Database db = new Database();
 			
 			// SQL to run
-			String sql = "select name, active from LightSwitch";
+			String sql = "select id, name, active from LightSwitch";
 			
 			// Open a connection
 			db.connect();
@@ -62,11 +62,12 @@ public class LightSwitchServlet extends HttpServlet
 			while (resultSet.next())
 			{
 				// Get the values
+				int id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
 				boolean on = (resultSet.getInt("active") != 0);
 				
 				// Create a new LightSwitch object and add it to the list
-				lightSwitchList.add(new LightSwitch(name, on));
+				lightSwitchList.add(new LightSwitch(id, name, on));
 			}
 			
 			// Close the database connection
