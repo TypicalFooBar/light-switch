@@ -18,7 +18,7 @@ public class LightSwitch
 		resourceHandler.setResourceBase("./www");
 		
 		ServletHandler servletHandler = new ServletHandler();
-		servletHandler.addServletWithMapping(LightSwitchServlet.class, "/api/switch");
+		servletHandler.addServletWithMapping(LightSwitchServlet.class, "/api/light-switch");
 		
 		HandlerList handlers = new HandlerList();
 		handlers.setHandlers(new Handler[] { 

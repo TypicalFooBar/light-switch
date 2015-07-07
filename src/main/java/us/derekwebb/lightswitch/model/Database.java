@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 public class Database
 {
-	private String connectionString = "jdbc:sqlite:switch.db";
+	private String connectionString = "jdbc:sqlite:light-switch.db";
 	
 	private Connection connection = null;
 	
@@ -19,7 +19,7 @@ public class Database
 		boolean needToCreateDBTables = false;
 		
 		// Check for the existance of the DB file.
-		if (!(new File("switch.db").exists()))
+		if (!(new File("light-switch.db").exists()))
 		{
 			try
 			{
@@ -63,7 +63,7 @@ public class Database
 	{
 		// Creates the Switch table
 		String sql = 
-			"create table Switch ( " +
+			"create table LightSwitch ( " +
 				"id integer primary key autoincrement, " +
 				"name text not null, " +
 				"active integer not null " +
@@ -83,7 +83,7 @@ public class Database
 	private void insertDummyData() throws SQLException
 	{
 		// Insert SQL
-		String sql = "insert into Switch (name, active) values (?, ?)";
+		String sql = "insert into LightSwitch (name, active) values (?, ?)";
 		
 		// Connect to the database
 		this.connect();

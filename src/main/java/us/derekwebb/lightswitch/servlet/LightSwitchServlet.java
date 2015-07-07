@@ -50,7 +50,7 @@ public class LightSwitchServlet extends HttpServlet
 			Database db = new Database();
 			
 			// SQL to run
-			String sql = "select name, active from Switch";
+			String sql = "select name, active from LightSwitch";
 			
 			// Open a connection
 			db.connect();
