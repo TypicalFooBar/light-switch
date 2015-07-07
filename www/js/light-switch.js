@@ -13,7 +13,7 @@ function loadTemplates() {
 
 function updateLightSwitchList() {
 	// AJAX call to get the light switches
-	$.get("/api/switch?action=getLightSwitchList")
+	$.get("/api/light-switch?action=getLightSwitchList")
 		.done(function(data) {
 			// Parse the return json
 			var lightSwitchList = JSON.parse(data);

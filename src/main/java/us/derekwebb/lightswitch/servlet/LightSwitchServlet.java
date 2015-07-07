@@ -74,6 +74,7 @@ public class LightSwitchServlet extends HttpServlet
 		}
 		catch (SQLException e)
 		{
+			System.out.println(e.getMessage());
 		}
 		
 		return lightSwitchList;
