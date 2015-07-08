@@ -1,3 +1,17 @@
 body {
 	background-color: rgb(27, 28, 29);
+	padding: 10px;
+}
+
+#fullscreen-button {
+	float: right;
+	/*
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	*/
+}
+
+#fullscreen-button i {
+	margin: 0px;
 }

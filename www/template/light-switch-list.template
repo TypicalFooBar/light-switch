@@ -1,3 +1,5 @@
 {{#.}}
-	<button data-id="{{id}}" data-name="{{name}}" class="light-switch massive toggle ui button {{#active}}active{{/active}}">{{name}}</button>
+	<div class="column">
+		<button data-id="{{id}}" data-name="{{name}}" class="light-switch inverted massive fluid toggle ui button {{#active}}active{{/active}}">{{name}}</button>
+	</div>
 {{/.}}
