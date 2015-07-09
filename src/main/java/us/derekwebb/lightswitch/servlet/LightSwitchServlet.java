@@ -50,7 +50,7 @@ public class LightSwitchServlet extends HttpServlet
 			Database db = new Database();
 			
 			// SQL to run
-			String sql = "select id, name, active from LightSwitch";
+			String sql = "select id, name, active, pinNumber from LightSwitch";
 			
 			// Open a connection
 			db.connect();
@@ -65,9 +65,10 @@ public class LightSwitchServlet extends HttpServlet
 				int id = resultSet.getInt("id");
 				String name = resultSet.getString("name");
 				boolean on = (resultSet.getInt("active") != 0);
+				int pinNumber = resultSet.getInt("pinNumber");
 				
 				// Create a new LightSwitch object and add it to the list
-				lightSwitchList.add(new LightSwitch(id, name, on));
+				lightSwitchList.add(new LightSwitch(id, name, on, pinNumber));
 			}
 			
 			// Close the database connection

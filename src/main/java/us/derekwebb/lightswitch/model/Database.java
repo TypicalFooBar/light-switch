@@ -66,7 +66,8 @@ public class Database
 			"create table LightSwitch ( " +
 				"id integer primary key autoincrement, " +
 				"name text not null, " +
-				"active integer not null " +
+				"active integer not null, " +
+				"pinNumber integer not null " + 
 			");";
 		
 		// Connect to the database
@@ -82,11 +83,9 @@ public class Database
 	
 	private void insertDummyData() throws SQLException
 	{
-		LightSwitch one = new LightSwitch("Test 1", true);
-		LightSwitch two = new LightSwitch("Test 2", false);
+		LightSwitch gpio11LightSwitch = new LightSwitch("GPIO 11", false, 11);
 		
-		one.commit();
-		two.commit();
+		gpio11LightSwitch.commit();
 		
 		/*
 		// Insert SQL

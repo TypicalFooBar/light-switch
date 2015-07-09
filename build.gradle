@@ -16,3 +16,7 @@ dependencies {
 	compile 'com.pi4j:pi4j-core:1.0'
 	compile 'org.xerial:sqlite-jdbc:3.8.10.1'
 }
+
+applicationDistribution.from('www') {
+	into 'www'
+}
