@@ -1,10 +1,20 @@
 apply plugin: 'java'
 apply plugin: 'application'
+apply plugin: 'org.hidetake.ssh'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 version = '0.1'
 mainClassName = 'us.derekwebb.lightswitch.LightSwitch'
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'org.hidetake:gradle-ssh-plugin:1.1.3'
+  }
+}
 
 repositories {
 	mavenCentral()
@@ -19,4 +29,34 @@ dependencies {
 
 applicationDistribution.from('www') {
 	into 'www'
+}
+
+remotes {
+	pi {
+		host = '192.168.1.108'
+		user = 'pi'
+		password = 'raspberry'
+		knownHosts = allowAnyHosts
+	}
+}
+
+task deploy << {
+	ssh.run {
+		session(remotes.pi) {
+			// Remove the current version
+			executeSudo('rm -r /opt/light-switch-' + version, ignoreError: true)
+			
+			// Move the tar to the raspberry pi
+			put from: 'build/distributions/light-switch-' + version + '.tar', into: '/home/pi/light-switch-' + version + '.tar'
+			
+			// Extract the tar
+			executeSudo('tar -C /opt -xf /home/pi/light-switch-' + version + '.tar')
+			
+			// Delete the tar
+			execute('rm /home/pi/light-switch-' + version + '.tar')
+			
+			// Start the server (could be replaced with a run.sh script)
+			execute('cd /opt/light-switch-' + version + '; sudo bin/light-switch > /dev/null 2>&1 &')
+		}
+	}
 }
