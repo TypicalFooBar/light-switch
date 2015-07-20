@@ -3,7 +3,14 @@ var templates = [];
 $(function() {
 	loadTemplates();
 	getLightSwitchList();
+	initEditButton();
 });
+
+function initEditButton() {
+	$('#edit-button').on('click', function() {
+		location.href="/edit";
+	});
+}
 
 function loadTemplates() {
 	$.get('/template/light-switch-list.template', function(data) {
@@ -53,10 +60,10 @@ function initButtons() {
 
 			// Create the light switch object (will JSON.stringify() later)
 			var lightSwitch = {
-				id: button.attr('data-id'), // The light-switch id
-				name: button.attr('data-name'), // The light-switch name
+				id: button.data('id'), // The light-switch id
+				name: button.data('name'), // The light-switch name
 				active: !button.hasClass('active'), // The opposite value from the button's current 'active' state
-				pinNumber: button.attr('data-pinNumber') // The GPIO pin that this light-switch controls
+				pinNumber: button.data('pinNumber') // The GPIO pin that this light-switch controls
 			};
 			
 			// AJAX call to update the button's status on the server
