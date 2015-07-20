@@ -1,5 +1,9 @@
 {{#.}}
 	<div class="column">
-		<button data-id="{{id}}" data-name="{{name}}" data-pinNumber="{{pinNumber}}" class="light-switch inverted massive fluid toggle ui button {{#active}}active{{/active}}">{{name}}</button>
+		<button
+			data-id="{{id}}"
+			data-name="{{name}}"
+			data-pinNumber="{{pinNumber}}"
+			class="light-switch inverted massive fluid toggle ui button {{#active}}active{{/active}}">{{name}}</button>
 	</div>
 {{/.}}
