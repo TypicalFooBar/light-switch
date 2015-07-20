@@ -63,7 +63,7 @@ function initButtons() {
 				id: button.data('id'), // The light-switch id
 				name: button.data('name'), // The light-switch name
 				active: !button.hasClass('active'), // The opposite value from the button's current 'active' state
-				pinNumber: button.data('pinNumber') // The GPIO pin that this light-switch controls
+				pinNumber: button.data('pin-number') // The GPIO pin that this light-switch controls
 			};
 			
 			// AJAX call to update the button's status on the server
