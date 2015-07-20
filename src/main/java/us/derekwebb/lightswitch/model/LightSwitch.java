@@ -4,10 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-
 public class LightSwitch
 {
 	private int id;
@@ -52,15 +48,13 @@ public class LightSwitch
 	
 	private void updateGPIO()
 	{
-		
-		
 		if (this.active)
 		{
-			us.derekwebb.lightswitch.LightSwitch.pinOutput.high();
+			us.derekwebb.lightswitch.LightSwitch.gpioPinHashMap.get(this.pinNumber).high();
 		}
 		else
 		{
-			us.derekwebb.lightswitch.LightSwitch.pinOutput.low();
+			us.derekwebb.lightswitch.LightSwitch.gpioPinHashMap.get(this.pinNumber).low();
 		}
 	}
 	

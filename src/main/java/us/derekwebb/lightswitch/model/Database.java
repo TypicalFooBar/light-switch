@@ -83,29 +83,16 @@ public class Database
 	
 	private void insertDummyData() throws SQLException
 	{
-		LightSwitch gpio11LightSwitch = new LightSwitch("GPIO 11", false, 11);
+		LightSwitch gpio00LightSwitch = new LightSwitch("GPIO 0", false, 0);
+		gpio00LightSwitch.commit();
 		
-		gpio11LightSwitch.commit();
+		LightSwitch gpio02LightSwitch = new LightSwitch("GPIO 2", false, 2);
+		gpio02LightSwitch.commit();
 		
-		/*
-		// Insert SQL
-		String sql = "insert into LightSwitch (name, active) values (?, ?)";
+		LightSwitch gpio03LightSwitch = new LightSwitch("GPIO 3", false, 3);
+		gpio03LightSwitch.commit();
 		
-		// Connect to the database
-		this.connect();
-		
-		// Prepare and execute the statement
-		PreparedStatement statement = connection.prepareStatement(sql);
-		statement.setString(1, "DB Light 1");
-		statement.setInt(2, 0);
-		statement.executeUpdate();
-		
-		statement.setString(1, "DB Light 2");
-		statement.setInt(2, 1);
-		statement.executeUpdate();
-		
-		// Close the connection to the database
-		this.close();
-		*/
+		LightSwitch gpio04LightSwitch = new LightSwitch("GPIO 4", false, 4);
+		gpio04LightSwitch.commit();
 	}
 }

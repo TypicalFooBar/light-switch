@@ -44,7 +44,7 @@ task deploy << {
 	ssh.run {
 		session(remotes.pi) {
 			// Remove the current version
-			executeSudo('rm -r /opt/light-switch-' + version, ignoreError: true)
+			executeSudo('rm -r /opt/light-switch-*', ignoreError: true)
 			
 			// Move the tar to the raspberry pi
 			put from: 'build/distributions/light-switch-' + version + '.tar', into: '/home/pi/light-switch-' + version + '.tar'
