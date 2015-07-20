@@ -1,11 +1,16 @@
 <div id="edit-form" class="ui inverted form">
 	<div class="ui inverted huge header">Button Names</div>
 	{{#.}}
-		<div class="field">
-			<div class="ui massive input">
-				<input type="text" name="name" value="{{name}}">
+		<form class="button-edit-form">
+			<input type="hidden" name="id" value="{{id}}">
+			<input type="hidden" name="pinNumber" value="{{pinNumber}}">
+			<input type="hidden" name="active" value="{{active}}">
+			<div class="field">
+				<div class="ui massive input">
+					<input type="text" name="name" value="{{name}}">
+				</div>
 			</div>
-		</div>
+		</form>
 	{{/.}}
 	<div class="two ui massive buttons">
 		<button id="cancel-button" class="ui inverted button">Cancel</button>

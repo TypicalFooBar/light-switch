@@ -81,16 +81,16 @@ public class Database
 	
 	private void insertDummyData() throws SQLException
 	{
-		LightSwitch gpio00LightSwitch = new LightSwitch("GPIO 0", false, 0);
+		LightSwitch gpio00LightSwitch = new LightSwitch("Button 1", false, 0);
 		gpio00LightSwitch.commit();
 		
-		LightSwitch gpio02LightSwitch = new LightSwitch("GPIO 2", false, 2);
+		LightSwitch gpio02LightSwitch = new LightSwitch("Button 2", false, 2);
 		gpio02LightSwitch.commit();
 		
-		LightSwitch gpio03LightSwitch = new LightSwitch("GPIO 3", false, 3);
+		LightSwitch gpio03LightSwitch = new LightSwitch("Button 3", false, 3);
 		gpio03LightSwitch.commit();
 		
-		LightSwitch gpio04LightSwitch = new LightSwitch("GPIO 4", false, 4);
+		LightSwitch gpio04LightSwitch = new LightSwitch("Button 4", false, 4);
 		gpio04LightSwitch.commit();
 	}
 }
