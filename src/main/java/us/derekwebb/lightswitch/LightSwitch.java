@@ -27,7 +27,7 @@ public class LightSwitch
 		gpioPinHashMap.put(3, gpio.provisionDigitalOutputPin(com.pi4j.io.gpio.RaspiPin.GPIO_03));
 		gpioPinHashMap.put(4, gpio.provisionDigitalOutputPin(com.pi4j.io.gpio.RaspiPin.GPIO_04));
 		
-		Server server = new Server(8080);
+		Server server = new Server(80);
 		
 		ResourceHandler resourceHandler = new ResourceHandler();
 		resourceHandler.setResourceBase("./www");
@@ -44,9 +44,6 @@ public class LightSwitch
 		server.setHandler(handlers);
 		
 		server.start();
-		
-		// TODO: Used only for testing
-		//java.awt.Desktop.getDesktop().browse(new java.net.URI("http://localhost:8080"));
 		
 		server.join();
 		
