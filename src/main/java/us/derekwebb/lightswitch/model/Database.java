@@ -16,8 +16,6 @@ public class Database
 	
 	public Database()
 	{
-		boolean needToCreateDBTables = false;
-		
 		// Check for the existance of the DB file.
 		if (!(new File("light-switch.db").exists()))
 		{
