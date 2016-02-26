@@ -37,6 +37,10 @@ public class LightSwitchServlet extends HttpServlet
 			lightSwitch.commit();
 		}
 		
+        // Add headers
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        
+        // Send the response
 		response.getWriter().println(jsonReturn);
 	}
 	
