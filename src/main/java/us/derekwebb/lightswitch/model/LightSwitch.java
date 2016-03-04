@@ -10,6 +10,13 @@ public class LightSwitch
 	private String name;
 	private boolean active;
 	private int pinNumber;
+    
+    public LightSwitch(int id)
+    {
+        this.id = id;
+        
+        this.inflateWithId(id);
+    }
 	
 	public LightSwitch(String name, boolean active, int pinNumber)
 	{
@@ -26,6 +33,7 @@ public class LightSwitch
 	
 	public String getName() { return this.name; }
 	public boolean isActive() { return this.active; }
+    public void setActive(boolean active) { this.active = active; }
 	public int getPinNumber() { return this.pinNumber; }
 	
 	/**
@@ -57,6 +65,40 @@ public class LightSwitch
 			us.derekwebb.lightswitch.LightSwitch.gpioPinHashMap.get(this.pinNumber).low();
 		}
 	}
+    
+    private void inflateWithId(int id)
+    {
+        try
+		{
+			// SQL to run
+			String sql = "select name, active, pinNumber from LightSwitch where id = ?";
+			
+			// Open a connection
+			Database db = new Database();
+			db.connect();
+			
+			// Prepare the statement
+			PreparedStatement statement = db.prepareStatement(sql);
+			statement.setInt(1, id);
+			
+            // Get the results
+            ResultSet resultSet = statement.executeQuery();
+            
+            // We'er only looking at the first result (and there should only be one)
+            resultSet.next();
+            
+            this.name = resultSet.getString("name");
+            this.active = resultSet.getInt("active") == 1 ? true:false;
+            this.pinNumber = resultSet.getInt("pinNumber");
+			
+			// Close the database connection
+			db.close();
+		}
+		catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+    }
 	
 	private void insert()
 	{

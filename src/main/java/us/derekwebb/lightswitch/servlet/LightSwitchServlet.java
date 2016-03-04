@@ -36,6 +36,10 @@ public class LightSwitchServlet extends HttpServlet
 			LightSwitch lightSwitch = gson.fromJson(request.getParameter("lightSwitch"), LightSwitch.class);
 			lightSwitch.commit();
 		}
+        else if (request.getParameter("action").equals("turnOn"))
+        {
+            turnOn(request.getParameter("idList"));
+        }
 		
         // Add headers
         response.addHeader("Access-Control-Allow-Origin", "*");
@@ -43,6 +47,18 @@ public class LightSwitchServlet extends HttpServlet
         // Send the response
 		response.getWriter().println(jsonReturn);
 	}
+    
+    private void turnOn(String idList)
+    {
+        String[] idArray = idList.split(",");
+        
+        for (int i = 0; i < idArray.length; ++i)
+        {
+            LightSwitch lightSwitch = new LightSwitch(Integer.parseInt(idArray[i]));
+            lightSwitch.setActive(true);
+            lightSwitch.commit();
+        }
+    }
 	
 	private ArrayList<LightSwitch> getLightSwitchList()
 	{
