@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import us.derekwebb.lightswitch.model.LightSwitch;
 import us.derekwebb.lightswitch.model.Database;
@@ -42,6 +43,29 @@ public class LightSwitchServlet extends HttpServlet
         }
 		
         // Add headers
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        
+        // Send the response
+		response.getWriter().println(jsonReturn);
+	}
+	
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+	{
+		Gson gson = new Gson();
+		String jsonReturn = "";
+		
+		if (request.getParameter("action").equals("updateLightSwitch"))
+		{
+			ArrayList<LightSwitch> lightSwitchList = gson.fromJson(request.getParameter("lightSwitchList"), new TypeToken<ArrayList<LightSwitch>>(){}.getType());
+			
+			for (LightSwitch lightswitch : lightSwitchList)
+			{
+				lightswitch.commit();
+			}
+		}
+		
+		// Add headers
         response.addHeader("Access-Control-Allow-Origin", "*");
         
         // Send the response
